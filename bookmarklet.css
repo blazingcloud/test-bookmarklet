@@ -1,0 +1,82 @@
+/* 
+    Document   : bookmarket
+    Created on : May 30, 2011, 11:26:39 PM
+    Author     : john
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+body, select, input, button, textarea {
+    color: #333333;
+    font-family: sans-serif;
+}
+#header {
+    -moz-user-select: none;
+    background: -moz-linear-gradient(center top , #0097D4, #0097D4) repeat scroll 0 0 transparent;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    cursor: default;
+    left: 0;
+    min-height: 40px;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 1500;
+}
+
+#header .logo a {
+    background: url("chatter4.png") no-repeat scroll 20px 0px transparent;
+    color: transparent;
+    display: block;
+    height: 40px;
+    top: 10px;
+    text-indent: -999em;
+    width: 108px;
+}
+
+h2{
+    font-size: 140%;
+    font-weight: bold;
+}
+
+#main {
+    position: absolute;
+    padding: 40px;
+    width: 100%;
+}
+
+#spinner {
+    padding: 130px;
+     margin:0px auto;
+    width: 40;
+}
+.bar, #main, #ftr {
+    margin: 0 auto;
+    max-width: 640px;
+    min-width: 240px;
+    width: auto;
+}
+#get-it {
+    padding: 10px 40px 40px;
+}
+
+textarea {
+    -moz-box-sizing: border-box;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 6px 6px 6px 6px;
+    display: block;
+    font-size: 108%;
+    height: 125px;
+    padding: 6px;
+    resize: vertical;
+    width: 100%;
+}
