@@ -16,7 +16,10 @@
 
 var BlazingCloud = {};
 BlazingCloud.Bookmarklet = (function(JQuery, document) {
-    var DIALOG_URL = 'http://pure-wind-615.heroku.com/status.html';
+    var DIALOG_URL = 'https://pure-wind-615.heroku.com/status';
+    //var DIALOG_URL = 'https://na9.salesforce.com/ConnectTest/oauth/_callback';
+    var SF_ID = '3MVG9y6x0357Hlee4DL3FGEieIKvD32laT1z5huSmZdEOcM78RomTQS7DjtljGYfrbMVAd.PEOAdoFcYLhFF.';
+    //var SF_ID = '3MVG9y6x0357Hlee4DL3FGEieIOFN1F9enF_spi4pvWGQLKTGVNqpU0ukxI7e78oQFFHXNiW3VYm5uFelSSOf';
     var sf_token, bookmark;
     var pairs = unescape(top.location.search.substring(1)).split(/\&/);
     for (var i in pairs) {
@@ -34,11 +37,9 @@ BlazingCloud.Bookmarklet = (function(JQuery, document) {
             url: 'https://login.salesforce.com/services/oauth2/authorize' +
             '?response_type=code' +
             '&redirect_uri=' + encodeURIComponent(DIALOG_URL) +
-            '&client_id=' + encodeURIComponent('3MVG9y6x0357Hlee4DL3FGEieIKvD32laT1z5huSmZdEOcM78RomTQS7DjtljGYfrbMVAd.PEOAdoFcYLhFF.'),
+            '&client_id=' + encodeURIComponent(SF_ID),
             auth: ''
         },
-        endpoint: 'https://na9.salesforce.com/services/data/v21.0/query/?q=SELECT Name FROM Account',
-        //endpoint: 'https://na1.salesforce.com/services/data/v22.0/chatter/users/me',
         testing: false,
         waiting: false,
 
@@ -54,10 +55,10 @@ BlazingCloud.Bookmarklet = (function(JQuery, document) {
             var screenWidth = screen.width;
             var left = Math.round( (screenWidth/3)-(width/3) );
             var top = (screenHeight > height) ? Math.round((screenHeight/2) - (height/2) ) : 0;
-            var shareWin = window.open(this.sfAuth.url,'share-win',
+            window.shareWin = window.open(this.sfAuth.url,'share-win',
                 'left='+left+',top='+top+',width='+width+
-                ',height='+height+',personalbar=0,toolbar=0,scrollbars=1,resizable=1');
-            shareWin.focus();
+                ',height='+height+',personalbar=1,toolbar=1,scrollbars=1,resizable=1');
+            window.shareWin.focus();
         },
         onReady: function() {
             
@@ -75,24 +76,7 @@ BlazingCloud.Bookmarklet = (function(JQuery, document) {
             setTimeout(function () {
                 self.showSpinner(false)
             }, 2000);
-            this.sendStatus();
-        },
-
-        sendStatus: function () {
-            console.info("sending request to " + this.endpoint);
-            $.ajax({
-                type: "GET",
-                url: this.endpoint,
-                dataType: "script",
-                contentType: 'application/x-www-form-urlencoded',
-                success: this.onSuccess,
-                error: this.onError,
-                async: false,
-                beforeSend : function (xhr) {
-                    console.info("BEFORE SEND");
-                    xhr.setRequestHeader('Authorization', 'OAuth xxx');
-                }
-            });
+            return true;
         },
         onError: function (jqXHR, textStatus, errorThrown) {
             console.error(errorThrown);

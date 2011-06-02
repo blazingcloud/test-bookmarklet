@@ -63,7 +63,11 @@ h2{
 #get-it {
     padding: 10px 40px 40px;
 }
-
+#error {
+    background: url("error.png") no-repeat scroll 0px 0px transparent;
+    height: 43;
+    width: 60;
+}
 textarea {
     -moz-box-sizing: border-box;
     background: none repeat scroll 0 0 #FFFFFF;
