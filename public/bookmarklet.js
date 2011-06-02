@@ -57,14 +57,14 @@ BlazingCloud.Bookmarklet = (function(JQuery, document) {
             var top = (screenHeight > height) ? Math.round((screenHeight/2) - (height/2) ) : 0;
             window.shareWin = window.open(this.sfAuth.url,'share-win',
                 'left='+left+',top='+top+',width='+width+
-                ',height='+height+',personalbar=1,toolbar=1,scrollbars=1,resizable=1');
+                ',height='+height+',personalbar=0,toolbar=0,scrollbars=1,resizable=1');
             window.shareWin.focus();
         },
         onReady: function() {
             
             this.bookmark = jQuery.cookie('bookmark');
-            console.info("this.bookmark:   "+this.bookmark);
-            console.info("TOKEN: " + this.sf_token);
+            //console.info("this.bookmark:   "+this.bookmark);
+            //console.info("TOKEN: " + this.sf_token);
             $('#submit-button').attr('disabled', false);
             $('#spinner').hide();
             $('#status').attr('value', mk.message());
