@@ -3,13 +3,8 @@
     Created on : May 30, 2011, 11:26:39 PM
     Author     : john
     Description:
-        Purpose of the stylesheet follows.
 */
 
-/* 
-   TODO customize this sample style
-   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
-*/
 
 root { 
     display: block;
@@ -34,7 +29,7 @@ body, select, input, button, textarea {
 }
 
 #header .logo a {
-    background: url("chatter4.png") no-repeat scroll 20px 0px transparent;
+    background: url("chatter_logo.png") no-repeat scroll 20px 0px transparent;
     color: transparent;
     display: block;
     height: 40px;

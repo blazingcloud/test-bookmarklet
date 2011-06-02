@@ -13,26 +13,10 @@
 // http://www.salesforce.com/us/developer/docs/chatterapipre/Content/connect_resources_how_to.htm
 
 // key: 3MVG9y6x0357Hlee4DL3FGEieIHOksjW46jHdEh7Q1I9jW4K1RkxxfhlsPDpGI64gIzfJ6TWKtYVhgUuojI.d
-// secret: 9003957249213877058
-
-
-
-
-//    curl --form client_id=3MVG9y6x0357Hlee4DL3FGEieIHOksjW46jHdEh7Q1I9jW4K1RkxxfhlsPDpGI64gIzfJ6TWKtYVhgUuojI.d
-//         --form client_secret=9003957249213877058
-//         --form grant_type=password
-//         --form username=john.olmstead@gmail.com
-//         --form password=C010m31a
-//         https://na1.salesforce.com/services/oauth2/token
-
-// curl --form client_id=3MVG9y6x0357Hlee4DL3FGEieIHOksjW46jHdEh7Q1I9jW4K1RkxxfhlsPDpGI64gIzfJ6TWKtYVhgUuojI.d --form client_secret=9003957249213877058 --form grant_type=password --form username=john.olmstead@gmail.com --form password=C010m31a https://na9.salesforce.com/ConnectTest/oauth2/token
-
-
-
 
 var BlazingCloud = {};
 BlazingCloud.Bookmarklet = (function(JQuery, document) {
-    var DIALOG_URL = 'https://192.168.1.41:8080/marklet/popup2.html';
+    var DIALOG_URL = 'http://pure-wind-615.heroku.com/status.html';
     var sf_token, bookmark;
     var pairs = unescape(top.location.search.substring(1)).split(/\&/);
     for (var i in pairs) {
