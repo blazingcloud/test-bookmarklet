@@ -1,6 +1,6 @@
 // Copyright 2011 Blazing Cloud, blazingcloud.net
 // @author John Olmstead
-// @namespace
+// @namespace   BlazingCloud
 // @module      Bookmarklet
 //
 // 
@@ -12,14 +12,18 @@
 //    Returns:              Feed Item
 // http://www.salesforce.com/us/developer/docs/chatterapipre/Content/connect_resources_how_to.htm
 
-// key: 3MVG9y6x0357Hlee4DL3FGEieIHOksjW46jHdEh7Q1I9jW4K1RkxxfhlsPDpGI64gIzfJ6TWKtYVhgUuojI.d
+// live key: 3MVG9y6x0357Hlee4DL3FGEieIHOksjW46jHdEh7Q1I9jW4K1RkxxfhlsPDpGI64gIzfJ6TWKtYVhgUuojI.d
+// test key: 3MVG9y6x0357Hlee4DL3FGEieIHOksjW46jHdEh7Q1I9jW4K1RkxxfhlsPDpGI64gIzfJ6TWKtYVhgUuojI.d
 
 var BlazingCloud = {};
 BlazingCloud.Bookmarklet = (function(JQuery, document) {
-    var DIALOG_URL = 'https://pure-wind-615.heroku.com/status';
-    //var DIALOG_URL = 'https://na9.salesforce.com/ConnectTest/oauth/_callback';
-    var SF_ID = '3MVG9y6x0357Hlee4DL3FGEieIKvD32laT1z5huSmZdEOcM78RomTQS7DjtljGYfrbMVAd.PEOAdoFcYLhFF.';
-    //var SF_ID = '3MVG9y6x0357Hlee4DL3FGEieIOFN1F9enF_spi4pvWGQLKTGVNqpU0ukxI7e78oQFFHXNiW3VYm5uFelSSOf';
+
+    //var CALLBACK_URL = 'https://pure-wind-615.heroku.com/auth';
+    //var CONSUMER_KEY = '3MVG9y6x0357Hlee4DL3FGEieIKvD32laT1z5huSmZdEOcM78RomTQS7DjtljGYfrbMVAd.PEOAdoFcYLhFF.';
+    
+    var CALLBACK_URL = 'https://glowing-snow-304.heroku.com/auth';
+    var CONSUMER_KEY = '3MVG9y6x0357Hlee4DL3FGEieIP9ypM_SfuWYvMJ.GDk6jyXkxLPC5_fYPXE7x16j4yRNhe1vkuksYxMsGj52';
+
     var sf_token, bookmark;
     var pairs = unescape(top.location.search.substring(1)).split(/\&/);
     for (var i in pairs) {
@@ -32,12 +36,12 @@ BlazingCloud.Bookmarklet = (function(JQuery, document) {
  
 
     var marklet = {
-        dialogURL: DIALOG_URL,
+        dialogURL: CALLBACK_URL,
         sfAuth: {
             url: 'https://login.salesforce.com/services/oauth2/authorize' +
             '?response_type=code' +
-            '&redirect_uri=' + encodeURIComponent(DIALOG_URL) +
-            '&client_id=' + encodeURIComponent(SF_ID),
+            '&redirect_uri=' + encodeURIComponent(CALLBACK_URL) +
+            '&client_id=' + encodeURIComponent(CONSUMER_KEY),
             auth: ''
         },
         testing: false,
@@ -46,10 +50,8 @@ BlazingCloud.Bookmarklet = (function(JQuery, document) {
         url: bookmark,
         sf_token: sf_token,
         dialog: function () {
+            console.info("setting cookie: " + document.location);
             jQuery.cookie('bookmark',document.location);
-
-            var sf_token = jQuery.cookie('sf_token');
-
             var width=956,  height=580;
             var screenHeight = screen.height;
             var screenWidth = screen.width;
@@ -60,9 +62,9 @@ BlazingCloud.Bookmarklet = (function(JQuery, document) {
                 ',height='+height+',personalbar=0,toolbar=0,scrollbars=1,resizable=1');
             window.shareWin.focus();
         },
-        onReady: function() {
-            
+        onReady: function() {          
             this.bookmark = jQuery.cookie('bookmark');
+            console.info("getting cookie: " + this.bookmark);
             //console.info("this.bookmark:   "+this.bookmark);
             //console.info("TOKEN: " + this.sf_token);
             $('#submit-button').attr('disabled', false);
